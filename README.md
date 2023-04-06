@@ -1,4 +1,4 @@
-# TritonHacks-Python_Hard-OpenCV
+# TritonHacks-Python_Hard
 TritonHacks: Python Hard openCV and NumPy image manipulation challenge
 
 ## Background
