@@ -3,9 +3,12 @@ import cv2
 from image_processing import Image_Processing
 from matplotlib import pyplot as plt
 
-img = cv2.imread("image.jpg")
+img = cv2.imread("image2.jpg")
 
-stop_data = cv2.CascadeClassifier('stop_data.xml')
+stop_data = cv2.CascadeClassifier('face_data.xml')
+
+# generate own haar cascade
+# https://pythonprogramming.net/haar-cascade-object-detection-python-opencv-tutorial/
 
 test = Image_Processing(img, stop_data)
 
