@@ -4,11 +4,12 @@ import cv2
 from image_processing import Image_Processing
 from matplotlib import pyplot as plt
 
-img = cv2.imread("image5.jpg")
+img = cv2.imread("image2.jpg")
 
 stop_data = cv2.CascadeClassifier('face_data.xml')
 
-minSize = 50
+# manually adjust depending on picture size
+minSize = 80
 
 # generate own haar cascade
 # https://pythonprogramming.net/haar-cascade-object-detection-python-opencv-tutorial/
