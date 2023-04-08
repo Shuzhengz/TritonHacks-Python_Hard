@@ -16,7 +16,7 @@ once in a while when you are in space. For each image taken, you have to perform
   - **Challenge**: Using OpenCV’s various methods of feature detection, you will identify the features that are present in the photos that the AVHC took. 
   You will then extract these features and generate separate smaller images that your computer can handle.
 
-- NumPy (+ maybe scripy)
+- NumPy (+ maybe scipy)
 
   - **Background story (context)**: Good job, you have spoiled many evil plans from the aliens, but they will not stand there and do nothing. 
   Recently, the angry aliens have started using pictures to trick our algorithms! To combat this and ensure the human’s safety, 
