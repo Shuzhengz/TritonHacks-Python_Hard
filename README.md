@@ -14,7 +14,7 @@ once in a while when you are in space. For each image taken, you have to perform
   The problem is the images are simply too big to be processed by the algorithms on your computer in real time.
 
   - **Challenge**: Using OpenCV’s various methods of feature detection, you will identify the faces that are present in the photos that the AVHC took. 
-  You will then extract these features and generate smaller images that your computer can handle. Each of your generated images cannot exceed [a set amount] in resolution.
+  You will then extract these faces and generate smaller images that your computer can handle. Each of your generated images cannot exceed [a set amount] in resolution.
 
 - NumPy (+ maybe scripy)
 
