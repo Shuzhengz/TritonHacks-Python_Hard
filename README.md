@@ -26,3 +26,8 @@ once in a while when you are in space. For each image taken, you have to perform
   obtain depth information to distinguish between pictures of humans (the aliens are using them as face-covers) and real humans. 
   You might also need to use NumPy’s segmentation tools to remove backgrounds to get the best result.
   
+## Requirements
+
+Requirement packages and dependencies are listed in `requirements.txt`
+
+To insall all requirements, navigate into the repository directory and enter `pip install -r requirements.txt` in the terminal
