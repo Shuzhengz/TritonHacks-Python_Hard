@@ -1,3 +1,3 @@
 # Getting Started
 
-To be written later
+The prototype directory contains a demo of the prototype
