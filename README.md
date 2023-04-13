@@ -22,9 +22,9 @@ once in a while when you are in space. For each image taken, you have to perform
   Recently, the angry aliens have started using pictures to trick our algorithms! To combat this and ensure the human’s safety, 
   you will have to distinguish between pictures of humans (they are aliens in disguise!) and real humans passing in front of the security cameras.
 
-  - **Challenge**: Using NumPy’s powerful image manipulation tools, you will extract normal maps from pictures the security cameras took in order to 
-  obtain depth information to distinguish between pictures of humans (the aliens are using them as face-covers) and real humans. 
-  You might also need to use NumPy’s segmentation tools to remove backgrounds to get the best result.
+  - **Challenge**: Using NumPy’s powerful image manipulation tools, you will seperate objects with the backgroundand extract the normal map from pictures the security
+  cameras took in order to obtain depth information to distinguish between pictures of humans (the aliens are using them as face-covers) and real humans. 
+  You might also need to use NumPy’s segmentation tools and some OpenCV libraries to get the best result.
   
 ## Requirements
 
