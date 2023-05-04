@@ -14,9 +14,7 @@ the AVHC took. You will then extract these features and generate separate smalle
 
 Through this challenge, you will learn about haar cascade and how to use some of the libraries in OpenCV's python port
 
-## Getting Started:
-
-### Requirements:
+## Requirements:
 
 You need python to do this, hopefully you have that installed, if not, visit python's website at 
 [https://www.python.org](https://www.python.org)
@@ -33,6 +31,11 @@ To install pip, run:
 Make sure to keep pip updated, to do this, run: 
 `pip install --upgrade pip`
 
+In your starter kit there should be a few demo images and two haar cascade `.xml` files, make sure they are in the same 
+directory as your code
+
+### Dependencies
+
 You will need OpenCV library and MatplotLib library for this challenge
 
 We provide a `requirement.txt` file for you to quickly install all the dependencies, to install, navigate to the 
@@ -44,4 +47,67 @@ If you would like to install them individually, run:
 
 - For OpenCV: `pip install opencv-python==4.7.0.72`
 - For MatplotLib: `pip install matplotlib==3.7.1`
+
+<h6> Note: OpenCV's Python port and Matplotlib currently does not support devices with Apple Silicon. </h6>
+
+## Getting Started:
+
+### Part 1: Setting Up
+
+#### Dependencies
+
+Create a file `<give it a name>.py` in your project directory, _make sure that the images that you use and the `.xml` 
+files are in the same directory_
+
+Import the libraries to use them, for OpenCV, the library name is just called `cv2`. We only need the `pyplot` 
+submodule from MatplotLib, so you could import that by itself:
+
+```python
+import cv2
+from matplotlib import pyplot
+```
+
+#### Getting the image
+
+OpenCV provides the function `imread()` for retrieving images. To use this, create a variable and assign its 
+value as the image. For example:
+
+```python
+image = cv2.imread("image.jpg")
+```
+
+You can also use absolute path to the image here, for example, `/home/UserName/Documents/projectDir/image.jpg` is a 
+valid path
+
+You can then display this image using the `imshow()` function in **pyplot**. For example:
+
+```python
+pyplot.imshow(image)
+```
+
+### Part 2: Haar Cascade
+
+Harr Cascade is a machine learning based approach to object detection, it was first proposed by Paul Viola and Michael 
+Jones in 2001. The main idea is essentially to analyse pictures using Haar-like features and finding the patterns behind.
+
+<p style="text-align:center;"><img src="images/haar_features.jpg" alt="haar features" width=300 /></p>
+
+<p style="text-align:center;"> Haar-like features </p>
+
+Using machine learning on a very large sample size of the picture of a thing, we could condense these patterns and 
+generate a model where we could roughly detect that object in a photo.
+
+<p style="text-align:center;"><img src="images/haar.png" alt="haar example" width=300 /></p>
+
+<p style="text-align:center;"> Ways that haar-like features can be used to analyse eyes </p>
+
+
+The `.xml` files that we provided are the already-trained haar cascade models of:
+
+- Human Faces: `face_data.xml`
+- Stop Signs: `stop_data.xml`
+
+OpenCV provides more pre-trained models [here](https://github.com/opencv/opencv/tree/master/data/haarcascades) 
+if you are interested to run object recognition on more things
+
 

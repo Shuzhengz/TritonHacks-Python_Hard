@@ -2,7 +2,7 @@
 import cv2
 
 from image_processing import Image_Processing
-from matplotlib import pyplot as plt
+from matplotlib import pyplot
 
 img = cv2.imread("image2.jpg")
 
@@ -22,6 +22,6 @@ if len(test.get_data(minSize)) != 0:
     for (x, y, width, height) in test.get_data(minSize):
         cv2.rectangle(image, (x, y), (x + height, y + width), (0, 255, 0), 5)
 
-plt.subplot(1, 1, 1)
-plt.imshow(image)
-plt.show()
+pyplot.subplot(1, 1, 1)
+pyplot.imshow(image)
+pyplot.show()
