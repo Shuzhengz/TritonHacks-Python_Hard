@@ -1,6 +1,8 @@
 # TritonHacks-Python_Hard
 TritonHacks: Python Hard openCV and NumPy image manipulation challenge
 
+Work in progress
+
 ## Background
 
 Earth is invaded by aliens; therefore, you (the programmer) have to evacuate earth on a spaceship. The spaceship will have a camera that will take pictures 
