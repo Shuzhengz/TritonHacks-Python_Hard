@@ -87,19 +87,21 @@ pyplot.imshow(image)
 
 ### Part 2: Haar Cascade
 
+#### What is Haar Cascade
+
 Harr Cascade is a machine learning based approach to object detection, it was first proposed by Paul Viola and Michael 
 Jones in 2001. The main idea is essentially to analyse pictures using Haar-like features and finding the patterns behind.
 
 <p style="text-align:center;"><img src="images/haar_features.jpg" alt="haar features" width=300 /></p>
 
-<p style="text-align:center;"> Haar-like features </p>
+<h6 style="text-align:center;"> Haar-like features </h6>
 
 Using machine learning on a very large sample size of the picture of a thing, we could condense these patterns and 
 generate a model where we could roughly detect that object in a photo.
 
 <p style="text-align:center;"><img src="images/haar.png" alt="haar example" width=300 /></p>
 
-<p style="text-align:center;"> Ways that haar-like features can be used to analyse eyes </p>
+<h6 style="text-align:center;"> Haar-like features analysing eyes </h6>
 
 
 The `.xml` files that we provided are the already-trained haar cascade models of:
@@ -110,4 +112,12 @@ The `.xml` files that we provided are the already-trained haar cascade models of
 OpenCV provides more pre-trained models [here](https://github.com/opencv/opencv/tree/master/data/haarcascades) 
 if you are interested to run object recognition on more things
 
+#### Using Haar Cascade in your code
+
+OpenCV's [CascadeClassifier](https://docs.opencv.org/4.7.0/d1/de5/classcv_1_1CascadeClassifier.html) class is using for 
+object detection with haar cascades. To load a `.xml` file as a variable, use the `CascadeClassifier()` function:
+
+```python
+xml_data = cv2.CascadeClassifier('data.xml')
+```
 
