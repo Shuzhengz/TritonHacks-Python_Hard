@@ -18,6 +18,9 @@ the AVHC took. You will then extract these features and generate separate smalle
 
 Through this challenge, you will learn about haar cascade and how to use some of the libraries in OpenCV's python port
 
+<h4> The code shown below are just the general guidance on how your code should look, but variable names and other things 
+have been altered, so your program will not work if you just copy and paste everything! </h4>
+
 ## Requirements:
 
 You need python to do this, hopefully you have that installed, if not, visit python's website at 
