@@ -74,8 +74,8 @@ from matplotlib import pyplot
 
 ### Getting the image
 
-OpenCV provides the function `imread()` for retrieving images. To use this, create a variable and assign its 
-value as the image. For example:
+OpenCV provides the function `imread(<path_to_image>)` for retrieving images. To use this, create a variable and assign 
+its value as the image. For example:
 
 ```python
 variable = cv2.imread("image.jpg")
@@ -87,7 +87,7 @@ image </h6>
 You can also use absolute path to the image here, for example, `/home/UserName/Documents/projectDir/image.jpg` is a 
 valid path
 
-You can then display this image using the `imshow()` function in **pyplot**. For example:
+You can then display this image using the `imshow(<image_variable>)` function in **pyplot**. For example:
 
 ```python
 pyplot.imshow(image)
@@ -136,7 +136,7 @@ variable = cv2.CascadeClassifier('data.xml')
 <h6> Note that because the method CascadeClassifier has the same name as the class it is in, we do not have to call 
 its class again to use it </h6>
 
-## Part 3: Processing the Image
+## Part 3: Creating Functions for Processing
 
 Let's create a new class to process the image, you can create it directly in your main file, or create a new file and 
 import the class later
@@ -213,3 +213,47 @@ def function(self):
 <h6> Hint: Remember to name your functions differently!</h6>
 
 ### Processing the Image
+
+Here we will creat the function that processes the image with the cascade classifier. We also need an extra input 
+variable here as the minimum scale of detection
+
+We will use the `detectMultiScale(<input>, <minimum_size>)` function within the `CascadeClassifier` class inside OpenCV's 
+library. Here, the input will be the greyscale image, so we will utilize the function that we just created to do that.
+
+The minimum scale would be a dimension in pixes so that the function doesn't keep running forever 
+(for example, 100x100 pixels would be `minSize=(100, 100)`)
+
+Because the `detectMultiScale()` function is in the `CascadeClassifier` class, we will use it on a variable that is a 
+`CascadeClassifier` (which is `self.variable`, for whichever variable that you decided to load your `.xml` file into)
+
+```python
+def function(self, minimumSize):
+    return self.variable.detectMultiScale(self.your_function_for_greyscale(), minSize=(minimumSize, minimumSize))
+```
+
+This should be the last function that you will need in your class for now, you can expand it later
+
+## Part 4: Processing the Image
+
+Now let's head back to our main program file. If you created your class in another file, simply import it by:
+
+```python
+from fileName import YourClassName
+```
+
+<h6> Note that the file name when importing should not have the .py in it. For example, to import helloworld.py, you 
+should use helloworld when importing</h6>
+
+First, we need a variable as the minimum size, you can adjust this to fine tune later
+
+```python
+# manually adjust depending on picture size
+minimumSize = 100
+```
+
+Then we will create a new instance of our class, note that you should pass in the image and the .xml here now
+
+```python
+variable = className(variable1, variable2)
+```
+
