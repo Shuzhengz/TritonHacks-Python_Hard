@@ -52,7 +52,7 @@ If you would like to install them individually, run:
 - For OpenCV: `pip install opencv-python==4.7.0.72`
 - For MatplotLib: `pip install matplotlib==3.7.1`
 
-<h6> Note: OpenCV's Python port and Matplotlib currently does not support devices with Apple Silicon. </h6>
+<h6> Note: OpenCV's Python port and Matplotlib currently do not support devices with Apple Silicon. </h6>
 
 ## Part 1: Setting Up
 
