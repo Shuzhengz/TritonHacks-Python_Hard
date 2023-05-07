@@ -50,11 +50,9 @@ If you would like to install them individually, run:
 
 <h6> Note: OpenCV's Python port and Matplotlib currently does not support devices with Apple Silicon. </h6>
 
-## Getting Started:
+## Part 1: Setting Up
 
-### Part 1: Setting Up
-
-#### Dependencies
+### Dependencies
 
 Create a file `<give it a name>.py` in your project directory, _make sure that the images that you use and the `.xml` 
 files are in the same directory_
@@ -67,7 +65,7 @@ import cv2
 from matplotlib import pyplot
 ```
 
-#### Getting the image
+### Getting the image
 
 OpenCV provides the function `imread()` for retrieving images. To use this, create a variable and assign its 
 value as the image. For example:
@@ -92,9 +90,9 @@ Note how the image looks a little weird with a few colors distorted. This is bec
 variable is in `BGR` colorspace and your monitor displays images in the `RGB` colorspace. We will convert them later to 
 properly display the image
 
-### Part 2: Haar Cascade
+## Part 2: Haar Cascade
 
-#### What is Haar Cascade
+### What is Haar Cascade
 
 Harr Cascade is a machine learning based approach to object detection, it was first proposed by Paul Viola and Michael 
 Jones in 2001. The main idea is essentially to analyse pictures using Haar-like features and finding the patterns behind.
@@ -119,7 +117,7 @@ The `.xml` files that we provided are the already-trained haar cascade models of
 OpenCV provides more pre-trained models [here](https://github.com/opencv/opencv/tree/master/data/haarcascades) 
 if you are interested to run object recognition on more things
 
-#### Load Haar Cascade into your code
+### Load Haar Cascade into your code
 
 OpenCV's [CascadeClassifier](https://docs.opencv.org/4.7.0/d1/de5/classcv_1_1CascadeClassifier.html) class is using for 
 object detection with haar cascades. To load a `.xml` file as a variable, use the `CascadeClassifier()` function:
@@ -131,7 +129,7 @@ variable = cv2.CascadeClassifier('data.xml')
 <h6> Note that because the method CascadeClassifier has the same name as the class it is in, we do not have to call 
 its class again to use it </h6>
 
-### Part 3: Processing the Image
+## Part 3: Processing the Image
 
 Let's create a new class to process the image, you can create it directly in your main file, or create a new file and 
 import the class later
@@ -163,7 +161,7 @@ def __init__(self, variable1, variable2, variable3):
 
 These variables can then be used in all of our functions that are inside the class
 
-#### Convert To Greyscale
+### Convert To Greyscale
 
 Let's creat the function to convert image into greyscale first. OpenCV contains the function 
 `cvtColor(<input>, <conversion_code>)` to convert the images into another color space
@@ -188,7 +186,7 @@ def function(self):
     return cv2.cvtColor(self.imageVariable, cv2.COLOR_BGR2GRAY)
 ```
 
-#### ConvertToColor
+### ConvertToColor
 
 Here we will convert the image from `BGR` to `RGB` so it can be displayed properly. The function should look very 
 similar to the previous one, except with a different code to convert it into another colorspace
@@ -207,4 +205,4 @@ def function(self):
 
 <h6> Hint: Remember to name your functions differently!</h6>
 
-#### Processing the Image
+### Processing the Image
