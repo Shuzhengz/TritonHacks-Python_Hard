@@ -14,12 +14,12 @@ camera! The problem is the images are simply too big to be processed by the algo
 ### Challenge:
 
 Using OpenCV’s various methods of feature detection, you will identify the features that are present in the photos that 
-the AVHC took. You will then extract these features and generate separate smaller images that your computer can handle.
+the AVHC took. You will then extract these features and plot out smaller regions for your computer to handle.
 
 Through this challenge, you will learn about haar cascade and how to use some of the libraries in OpenCV's python port
 
-<h4> The code shown below are just the general guidance on how your code should look, but variable names and other things 
-have been altered, so your program will not work if you just copy and paste everything! </h4>
+<h3> Important: The code shown below are just the general guidance on how your code should look, but variable names and 
+other things have been altered, so your program will not work if you just copy and paste everything! </h3>
 
 ## Requirements:
 
@@ -90,7 +90,8 @@ valid path
 You can then display this image using the `imshow(<image_variable>)` function in **pyplot**. For example:
 
 ```python
-pyplot.imshow(image)
+pyplot.imshow(variable)
+pyplot.show()
 ```
 
 Note how the image looks a little weird with a few colors distorted. This is because the image contained in the 
@@ -217,17 +218,39 @@ def function(self):
 Here we will creat the function that processes the image with the cascade classifier. We also need an extra input 
 variable here as the minimum scale of detection
 
-We will use the `detectMultiScale(<input>, <minimum_size>)` function within the `CascadeClassifier` class inside OpenCV's 
-library. Here, the input will be the greyscale image, so we will utilize the function that we just created to do that.
+Haar Cascade works in a swiss cheese model: for each image passed through it, multiple Haar-like features have to be 
+satisfied in order for that image to pass.
 
-The minimum scale would be a dimension in pixes so that the function doesn't keep running forever 
+<p style="text-align:center;"><img src="images/swiss_cheese.png" alt="The Swiss Cheese Model" width=450 /></p>
+
+<h6 style="text-align:center;"> The Swiss Cheese Model </h6>
+
+In this sense, the model works sort of like a filter that filters out things that do not fit a pattern.
+
+#### Subdivisioning
+
+<p style="text-align:center;"><img src="images/cascade_process.png" alt="The Cascade Process" width=450 /></p>
+
+<h6 style="text-align:center;"> The Process </h6>
+
+You can see here how the photos have to satisfy more and more Haar-like features in each stage in order to pass
+
+We will use the `detectMultiScale(<input>, <minimum_size>)` function within the `CascadeClassifier` class inside 
+OpenCV's library. Here, the input will be the greyscale image, so we will utilize the function that we just created to 
+do that.
+
+Because we are trying to detect multiple objects in one photo, we have to separate it into multiple subdivisions (or 
+subwindws) and run them through the process one by one. Luckily, the `detectMultiScale()` function already does that 
+for us, and will return to us a vector of rectangles as the coordinates of the passed sections.
+
+The minimum scale would be a dimension in pixes for each subdivision so that the function doesn't keep running forever 
 (for example, 100x100 pixels would be `minSize=(100, 100)`)
 
 Because the `detectMultiScale()` function is in the `CascadeClassifier` class, we will use it on a variable that is a 
 `CascadeClassifier` (which is `self.variable`, for whichever variable that you decided to load your `.xml` file into)
 
 ```python
-def function(self, minimumSize):
+def process(self, minimumSize):
     return self.variable.detectMultiScale(self.your_function_for_greyscale(), minSize=(minimumSize, minimumSize))
 ```
 
@@ -244,6 +267,8 @@ from fileName import YourClassName
 <h6> Note that the file name when importing should not have the .py in it. For example, to import helloworld.py, you 
 should use helloworld when importing</h6>
 
+### Creating Variables
+
 First, we need a variable as the minimum size, you can adjust this to fine tune later
 
 ```python
@@ -251,9 +276,99 @@ First, we need a variable as the minimum size, you can adjust this to fine tune 
 minimumSize = 100
 ```
 
+#### Note: Different pictures would have different values for `minumumSize` as the resolutions are different
+
 Then we will create a new instance of our class, note that you should pass in the image and the .xml here now
 
 ```python
-variable = className(variable1, variable2)
+class = className(variable1, variable2)
 ```
 
+We would also want to convert our image into `RGB` so it could be displayed properly, this will come in handy later
+
+```python
+image = class.function_to_get_rgb()
+```
+
+### Running the Function
+
+Because our function returns a vector of rectangles, we can simply assign it to a variable as we run it: 
+
+```python
+rectangles = class.process(minimumSize)
+```
+
+### Visualizing
+
+To visualize our findings, we can draw the rectangles on the photo 
+
+First, make sure that our vector is not empty (or it would give use an error). We can use the built in `len()` function 
+for that:
+
+```python
+if len(rectangles) != 0:
+```
+
+Then inside that if loop, we would want to draw a rectangle for each rectangle in the vector, we can use a `for` loop 
+for this:
+
+```python
+    for (x, y, width, height) in rectangles:
+```
+
+Where `x` and `y` are the coordinates, and `width` and `height` are the... well, width and height of each rectangle
+
+Finally, we can draw the rectangles using the `rectangle(<image>, <start_point>, <end_point>, <color>, <thickness>)` 
+function in OpenCV's library:
+
+```python
+        cv2.rectangle(image, (x, y), (x + height, y + width), (0, 255, 0), 5)
+```
+
+Where the `image` is the `RGB` version of the picture we just created
+
+`(0, 255, 0)` would be the color of the rectangle in `(R, G, B)`, and `5` is the thickness. You can also tweak these 
+values to how you want them
+
+Combined, your completed loop should look something like this:
+
+```python
+if len(rectangles) != 0:
+    for (x, y, width, height) in rectangles:
+        cv2.rectangle(image, (x, y), (x + height, y + width), (0, 255, 0), 5)
+```
+
+#### Showing the plot
+
+If you still have the `pyplot.imshow(variable)` from before, please remove that, as this will mess with plotting
+
+To plot the completed image, add:
+
+```python
+pyplot.imshow(image)
+```
+
+in the end using the function from MatplotLib, will `imshow(image)` will show the image with the rectangles plotted
+
+Finally, use the `show()` function if you haven't already
+
+```python
+pyplot.show()
+```
+
+This will show the plot
+
+## Part 5: Wrap Up
+
+### Try Your Own Images!
+
+You can try to process the images that we provide by passing the paths to the images. You can also try this on your own 
+images, or even use with different `.xml` models!
+
+OpenCV provides more pre-trained models [here](https://github.com/opencv/opencv/tree/master/data/haarcascades) 
+if you are interested
+
+### Making your own models
+
+Generating your own .xml models can be challenging, but if you are interested, here is a tutorial on how: 
+[https://pythonprogramming.net/haar-cascade-object-detection-python-opencv-tutorial/](https://pythonprogramming.net/haar-cascade-object-detection-python-opencv-tutorial/) 

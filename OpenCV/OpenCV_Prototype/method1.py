@@ -18,10 +18,11 @@ test = Image_Processing(img, stop_data)
 
 image = test.get_img_rgb()
 
-if len(test.get_data(minSize)) != 0:
-    for (x, y, width, height) in test.get_data(minSize):
+rects = test.get_data(minSize)
+
+if len(rects) != 0:
+    for (x, y, width, height) in rects:
         cv2.rectangle(image, (x, y), (x + height, y + width), (0, 255, 0), 5)
 
-pyplot.subplot(1, 1, 1)
 pyplot.imshow(image)
 pyplot.show()
