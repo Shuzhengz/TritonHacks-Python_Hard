@@ -31,24 +31,32 @@ output_image = np.where(condition, img, background)
 plt.imshow(output_image)
 plt.show()
 
+cv2.imwrite("output.jpg", output_image)
 
 # Normal Map Generation
-d_im = output_image.astype("float64")
 
-normals = np.array(d_im, dtype="float32")
-h,w,d = d_im.shape
+imgGray = cv2.cvtColor(output_image, cv2.COLOR_RGBA2BGR)
+
+imageFloat = imgGray.astype("float64")
+
+normals = np.array(imageFloat, dtype="float32")
 
 print("Processing")
 
-for i in range(1,w-1):
-  for j in range(1,h-1):
-    t = np.array([i,j-1,d_im[j-1,i,0]],dtype="float64")
-    f = np.array([i-1,j,d_im[j,i-1,0]],dtype="float64")
-    c = np.array([i,j,d_im[j,i,0]] , dtype = "float64")
-    d = np.cross(f-c,t-c)
-    n = d / np.sqrt((np.sum(d**2)))
-    normals[j,i,:] = n
+for i in range(1, width - 1):
+    for j in range(1, height - 1):
+        t = np.array([i, j - 1, imageFloat[j - 1, i, 0]], dtype="float64")
+        f = np.array([i - 1, j, imageFloat[j, i - 1, 0]], dtype="float64")
+        c = np.array([i, j, imageFloat[j, i, 0]], dtype="float64")
+        d = np.cross(f - c, t - c)
+        n = d / np.sqrt((np.sum(d ** 2)))
+        normals[j, i, :] = n
 
-cv2.imwrite("normal.jpg",normals*255)
+normals *= 255
 
 print("done")
+
+plt.imshow(normals)
+plt.show()
+
+cv2.imwrite("normal.jpg")

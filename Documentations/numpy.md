@@ -1,4 +1,4 @@
-# TritonHacks Python-Hard Challenge: NumPy
+# TritonHacks Python-Hard Challenge: NumPy and MediaPipe
 
 Earth is invaded by aliens; therefore, you (the programmer) have to evacuate earth on a spaceship. The spaceship will 
 have a camera that will take pictures once in a while when you are in space. For each image taken, you have to perform 
@@ -195,5 +195,87 @@ plt.imshow(output_image)
 plt.show()
 ```
 
+You can also save the image by using
+
+```python
+cv2.imwrite("output.jpg", output_image)
+```
+
 ## Part 3: Generating Normal Map
 
+A normal map is essentially an image of depth information, it tells the computer how deep a feature on an image is, so 
+the computer can make it seem 3-dimensional when rendering it
+
+<p style="text-align:center;"><img src="images/normal_map_sample.png" alt="haar features" width=500 /></p>
+
+<h6 style="text-align:center;"> Normal map when rendered </h6>
+
+You can also read more about normal maps [here](https://en.wikipedia.org/wiki/Normal_mapping) (yep it's just the 
+wikipedia page of it)
+
+To generate the normal map, we first need to convert the image back into `BRG`
+
+```python
+imgGray = cv2.cvtColor(output_image, cv2.COLOR_RGBA2BGR)
+```
+
+Then we need to convert the image array into the `float64` (64 bit float) type so we can process it:
+
+```python
+imageFloat = imgGray.astype("float64")
+```
+
+We can now use the `array()` function inside NumPy's library to convert the image to a floar32 2-Dimensional image 
+array for process
+
+```python
+normals = np.array(imageFloat, dtype="float32")
+```
+
+Because Python is very slow and the algorith is also single-threaded, it will take a while to complete, we should 
+probably print something in the terminal to let yourself know that the program has started to process the image
+
+```python
+print("Processing")
+```
+
+Then we can apply these 2 for loops to process the image.
+
+```python
+for i in range(1, width - 1):
+    for j in range(1, height - 1):
+        t = np.array([i, j - 1, imageFloat[j - 1, i, 0]], dtype="float64")
+        f = np.array([i - 1, j, imageFloat[j, i - 1, 0]], dtype="float64")
+        c = np.array([i, j, imageFloat[j, i, 0]], dtype="float64")
+        d = np.cross(f - c, t - c)
+        n = d / np.sqrt((np.sum(d ** 2)))
+        normals[j, i, :] = n
+```
+
+This will convert each pixel in the image array in a set of formulas to generate the dept information based on shading. 
+
+Usually this works better on back and white images with only objects' shading and no texture, but in this case the 
+generated image is good enough for our onboard computer
+
+After the loops finish running, we can print out something to let us know that it has done processing
+
+```python
+print("done")
+```
+
+We now want to time our normal by `255` to correct the colors
+
+```python
+normals *= 255
+```
+
+And then finally we can plot the image and save it as a file
+
+```python
+plt.imshow(normals)
+plt.show()
+cv2.imwrite("normal.jpg")
+```
+
+You can see that the image is now in a weird image patter that only computers will be able to understand. But now our 
+onboard computer will be able to process and identify the aliens!
