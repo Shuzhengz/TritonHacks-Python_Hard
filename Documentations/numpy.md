@@ -216,7 +216,7 @@ wikipedia page of it)
 To generate the normal map, we first need to convert the image back into `BRG`
 
 ```python
-imgGray = cv2.cvtColor(output_image, cv2.COLOR_RGBA2BGR)
+imgGray = cv2.cvtColor(output_image, cv2.COLOR_RGB2BGR)
 ```
 
 Then we need to convert the image array into the `float64` (64 bit float) type so we can process it:
@@ -263,18 +263,17 @@ After the loops finish running, we can print out something to let us know that i
 print("done")
 ```
 
-We now want to time our normal by `255` to correct the colors
+We now want to time our normal by `255` to correct the colors, since we had it in `float64`, and now we want it back to 
+the sandard color range (0 to 255)
 
 ```python
 normals *= 255
 ```
 
-And then finally we can plot the image and save it as a file
+And then finally we can save the image as a file
 
 ```python
-plt.imshow(normals)
-plt.show()
-cv2.imwrite("normal.jpg")
+cv2.imwrite("normal.jpg", normals)
 ```
 
 You can see that the image is now in a weird image patter that only computers will be able to understand. But now our 

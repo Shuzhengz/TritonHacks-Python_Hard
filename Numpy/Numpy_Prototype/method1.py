@@ -35,7 +35,7 @@ cv2.imwrite("output.jpg", output_image)
 
 # Normal Map Generation
 
-imgGray = cv2.cvtColor(output_image, cv2.COLOR_RGBA2BGR)
+imgGray = cv2.cvtColor(output_image, cv2.COLOR_RGB2BGR)
 
 imageFloat = imgGray.astype("float64")
 
@@ -52,11 +52,9 @@ for i in range(1, width - 1):
         n = d / np.sqrt((np.sum(d ** 2)))
         normals[j, i, :] = n
 
-normals *= 255
 
 print("done")
 
-plt.imshow(normals)
-plt.show()
+normals *= 255
 
-cv2.imwrite("normal.jpg")
+cv2.imwrite("normal.jpg", normals)
