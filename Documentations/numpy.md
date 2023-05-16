@@ -23,6 +23,8 @@ segmentation tools and some OpenCV libraries to get the best result.
 You need python to do this, hopefully you have that installed, if not, visit python's website at 
 [https://www.python.org](https://www.python.org)
 
+#### Important: Mediapipe currently only supports up to Python 3.10, please do not use Python 3.11 for this challenge
+
 <h4>Make sure to have pip installed with python, pip is the package manager for python and is very useful for managing 
 your dependencies</h4>
 
@@ -36,4 +38,29 @@ Make sure to keep pip updated, to do this, run:
 `pip install --upgrade pip`
 
 In your starter kit there should be a few demo images, make sure they are in the same 
+directory as your code
+
+### Dependencies
+
+You will need NumPy, Mediapipe, OpenCV, and MatplotLib for this challenge
+
+We provide a `requirement.txt` file for you to quickly install all the dependencies, to install, navigate to the 
+directory and enter:
+
+`pip install -r requirements.txt`
+
+If you would like to install them individually, run:
+
+- For NumPy: `pip install numpy==1.24.2`
+- For Mediapipe: `pip install mediapipe==0.9.3.0`
+- For OpenCV: `pip install opencv-python==4.7.0.72`
+- For MatplotLib: `pip install matplotlib==3.7.1`
+
+<h6> Note: OpenCV's Python port and Matplotlib currently do not support devices with Apple Silicon. </h6>
+
+## Part 1: Setting Up
+
+### Dependencies
+
+Create a file `<give it a name>.py` in your project directory, make sure that the images that you use are in the same 
 directory as your code
