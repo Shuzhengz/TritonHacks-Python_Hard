@@ -264,7 +264,7 @@ print("done")
 ```
 
 We now want to time our normal by `255` to correct the colors, since we had it in `float64`, and now we want it back to 
-the sandard color range (0 to 255)
+the standard color range (0 to 255)
 
 ```python
 normals *= 255
