@@ -6,25 +6,26 @@ from matplotlib import pyplot as plt
 
 # Background Removal
 img = cv2.imread('image1.jpg')
-bg_image = cv2.imread('bg.jpg')
+background = cv2.imread('bg.jpg')
 
-height , width, channel = img.shape
+height, width, channel = img.shape
 
-mp_selfie_segmentation = mp.solutions.selfie_segmentation
-selfie_segmentation = mp_selfie_segmentation.SelfieSegmentation(model_selection=1)
+mpSelfieSegmentation = mp.solutions.selfie_segmentation
+segmentation = mpSelfieSegmentation.SelfieSegmentation(model_selection=1)
 
-RGB = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+imgRGB = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
 
-results = selfie_segmentation.process(RGB)
+results = segmentation.process(imgRGB)
 # extract segmented mask
 mask = results.segmentation_mask
 
 # it returns true or false where the condition applies in the mask
-condition = np.stack((results.segmentation_mask,) * 3, axis=-1) > 0.00000001
-# resize the background image to the same size of the original frame
-bg_image = cv2.resize(bg_image, (width, height))
+condition = np.stack((results.segmentation_mask,) * 3, axis=-1) > 1e-5
 
-output_image = np.where(condition, img, bg_image)
+# resize the background image to the same size of the original frame
+background = cv2.resize(background, (width, height))
+
+output_image = np.where(condition, img, background)
 
 # show outputs
 plt.imshow(output_image)
