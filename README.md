@@ -33,3 +33,5 @@ once in a while when you are in space. For each image taken, you have to perform
 Requirement packages and dependencies are listed in `requirements.txt`
 
 To insall all requirements, navigate into the repository directory and enter `pip install -r requirements.txt` in the terminal
+
+#### Note: Mediapipe does not support Python 3.11 at the moment, please use Python 3.10 instead
