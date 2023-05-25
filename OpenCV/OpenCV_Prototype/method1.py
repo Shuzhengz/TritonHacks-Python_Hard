@@ -1,5 +1,5 @@
 # Method 1: using the Cascade Classifier to detect patterns using haar cascade
-import cv2
+from cv2 import cv2
 
 from image_processing import Image_Processing
 from matplotlib import pyplot
