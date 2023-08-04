@@ -3,6 +3,8 @@ TritonHacks: Python Hard openCV and NumPy image manipulation challenge
 
 [Link to the published hackathon](https://tritonhacks.notion.site/Journey-Through-Space-with-Machine-Learning-655a11aea9784c0eb25b393b1991596a)
 
+Note that the published version has been simplified from the version in this repo
+
 ## Background
 
 Earth is invaded by aliens; therefore, you (the programmer) have to evacuate earth on a spaceship. The spaceship will have a camera that will take pictures 
