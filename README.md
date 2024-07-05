@@ -1,4 +1,4 @@
-# TritonHacks-Python_Hard
+# TritonHacks 2023 - Python Hard Challenge
 
 TritonHacks: Python Hard. An OpenCV and NumPy image manipulation challenge
 
