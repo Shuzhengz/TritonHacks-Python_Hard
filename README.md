@@ -1,8 +1,9 @@
 # TritonHacks-Python_Hard
-TritonHacks: Python Hard openCV and NumPy image manipulation challenge
+
+TritonHacks: Python Hard. An OpenCV and NumPy image manipulation challenge
 
 [Link to the published hackathon](https://tritonhacks.notion.site/Journey-Through-Space-with-Machine-Learning-655a11aea9784c0eb25b393b1991596a),
-event has concluded
+**event has concluded**
 
 Note that the published version has been simplified from the version in this repo
 
